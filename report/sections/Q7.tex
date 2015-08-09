@@ -1,0 +1,12 @@
+\section{Question 7}
+In this question we are asked read \cite{langford} and discuss how three of the methods of overfitting can affect the photometric redshift estimation task.
+\subsection{Discussion}
+Overfitting is an issue that it is necessary to be weary of when creating a model. It is quite well illustrated with the means squared error on the training and test data sets for the decision tree regression model. The three methods of overfitting I have chosen to discuss will relate directly to the decision tree regression and its performance.
+\subsubsection{Parameter Tweak Overfitting}
+Parameter Tweak overfitting is unlikely to be the reason that the decision tree regression performs as poorly as it does. The decision tree implementation in Scikit-learn \citep{scikit-learn} has a number of parameters, the most significant to its performance beign the depth of the tree and the maximal number of features. The reason that it seems unlikely is that \cite{langford} refers to the parameter tweak to be a case of overfitting with regards to the test data, not the training data.\\
+On the other hand the reason it could be the source of error, is that I employ cross validation, which splits the training data into a number of training and test sets. This allows for the regressor to fit its model closely to the test sets within the training set, thus attaining parameter tweak overfitting.
+\subsubsection{Brittle Measure}
+As mentioned we use cross validation as well as parameter search. It is exactly this the blog post warns about. Using measures that can be very brittle. This may have been the case for the decision tree regression, having used both a parameter search and cross validation. In order to mitigate this risk one could simply leave out the cross validation and simply do a parameter search for the best parameters.
+
+\subsubsection{Traditional overfitting}
+Finally we have traditional overfitting, that is the model is too complex for the data set - or the training set simply is too small, for instance meaning that there are few or no outliers. In fact this is what I believe is the issue with the decision tree regression. While the idea of the algorithm is fairly simple, the data sets it can be successfully used upon should be more complex. I believe that this is the cause given the perfect prediction on the training set and the fairly horrible prediction on the test set.

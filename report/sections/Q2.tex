@@ -1,0 +1,29 @@
+\section{Question 2}
+In this question we are asked to investigate whether it's possible to improve the results by using a non-linear model for regression. We are asked to either describe a method that works better or present the results of two non-linear regressors and argue for their correct usage.
+
+\subsection{Description of software}
+In this I have used the implementation of a KNN-regressor and Decision Tree regressor in \cite{scikit-learn} for the regression task. Both of these are non-linear, and the implementation of them are used in the same way. That is, we fit the model to the data, and then use the model to predict. Finally we use the \cite{scikit-learn} implementation of mean squared error (giving it the prediction and the labels of the data set as argument), to calculate the error.\\
+Furthermore we use the GridSearchCV as implemented in Scikit-learn \citep{scikit-learn} which takes the classifier, the parameters to search for and the number of folds as arguments.
+
+\subsection{Results}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{lll}
+    & Training Set & Test Set \\
+    Linear Regression & 0.002811 & 0.003197 \\
+    KNN Regression & 0.002282 & 0.003163 \\
+    DT Regression & 0.000000 & 0.004514
+  \end{tabular}
+ \caption{Linear \& Non-linear regression results}
+ \label{nonlinRegression}
+\end{table}
+
+A note, as the Decision Tree Regressor uses a random seed, the score is the mean of 10 scores. Furthermore a grid search for the best parameter, was inconclusive as to the best number of maximal features switching between the optimal number of features being either \(\sqrt{features}\) and \(\log_2(features)\).
+
+\subsection{Discussion}
+As table \ref{nonlinRegression} shows, both non-linear regressors perform better on the training set, but only the KNN Regression performs better on the test set.\\
+Given the perfect score for the decision tree regression on the training set for the decision tree we can begin to question whether the relatively poor score (comparitavely) is a result of overfitting the model to the training data.\\
+
+In order to generalise each time one of the non-linear regressors is called a grid search and cross validation is performed to find the optimal parameters for the model, thus ensuring that the constructed models do not suffer under the parameters set for other data sets.\\
+
+The results of the regressions do not provide signficant improvements on the test set, but in case of both the non-linear regressors, provide a significantly improved error on the training set. From the result on the training and test set one can infer that non-linear regression provides a slightly better result when using decision trees, but performs a lot worse on the test set when using decision trees, leading to the consideration of overfitting as mentioned.

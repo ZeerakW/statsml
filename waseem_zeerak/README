@@ -1,0 +1,22 @@
+# StatsML Exam Assignment
+
+Requirements:
+Python 2.7.x
+SciPy
+Scikit-learn
+matplotlib
+pylab
+Pandas
+
+## Executing code
+# Only run the regression tasks
+python main.py regression 
+
+# Only run the binary classification and PCA tasks
+python main.py binary
+
+# Only run the multiclass classification tasks
+python main.py multiclass
+
+# Run everything
+python main.py

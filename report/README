@@ -1,0 +1,14 @@
+Howto for LaTeX:
+
+Howto for Makefile:
+
+If you have a different filename for your master document then you need to edit the "filename" variable in the Makefile.
+
+Commands:
+make pdf:
+Runs pdflatex with citations so all of the citations are added.
+
+make open:
+Opens the pdf in Preview.
+
+If you run "make pdf" from the directory with the Makefile it'll compile the report and generate a pdf.

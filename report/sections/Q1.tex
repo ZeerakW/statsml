@@ -1,0 +1,47 @@
+\section{Question 1}
+In this question we are asked to
+\begin{quote}
+  Build an affine linear model of the data using linear regression and the training data in redshiftTrain.csv only. Report the parameters of the model (do not forget the offset/bias parameter).\\
+  Determine the training error by computing the mean-squared-error of the model over the complete training data set. Compute the mean-squared-error on the test data set redshiftTest.csv.
+\end{quote}
+
+\subsection{Description of software}
+To answer this question I have used the implementation of Linear Regression from \cite{scikit-learn}. I use the default parameters. After initialising, I fit the model to the data and predict the test set and the entire training set. The predictions are then reported and scored using the \cite{scikit-learn} implementation of calculating the mean squared error.\\
+
+\subsection{Results}
+
+\begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \resizebox{\textwidth}{!}{%
+      \begin{tabular}{ll}
+        & Mean Squared Error \\\hline
+        Training Set & 0.002811\\
+        Test Set     & 0.003197\\
+    \end{tabular}
+    }
+    \captionof{table}{Mean Squared Error: Linear Regression}
+    \label{LinReg}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\textwidth}
+    \centering
+      \begin{tabular}{l}
+        Parameters\\\hline
+        -0.88026454\\
+        -0.00594614\\
+        0.10970524\\
+        0.27820802\\
+        -0.00200288\\
+        0.00930554\\
+        -0.00864573\\
+        0.00402381\\
+        -0.10735105\\
+        -0.00966409\\
+        0.04080815\\
+      \end{tabular}
+    \captionof{table}{Parameters of the linear regression model}
+    \label{params}
+\end{minipage}
+
+\subsection{Discussion}
+As we see from the results the mean squared error behaves exactly as we would expect it to. The error on the training data is significantly lower than the error on the test data. Given that the error grows moderately on the test set, and that the error exists on the training set we can infer that the model is less likely to suffer from overfitting. Furthermore given how small the errors are we presume that model fits well to the data. Further investigation could be done by plotting and seeing the differences.

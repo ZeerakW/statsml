@@ -1,0 +1,21 @@
+\section{Question 6}
+In this question we are asked to build a linear and a non-linear model that can classify a multiclass data set and report the results.
+\subsection{Description of software}
+The procedure and software used in this is the same as used in section \ref{classification}. That is grid searching for parameters and performing cross validation and then fitting the returned model to the data. I do however use another metric for evaluating the classification error, that is I use a \texttt{zero one loss} metric, subtracting the the \(1\) from the score. I use the \texttt{zero one loss} implemented in \cite{scikit-learn} which takes the predicted labels and the actual labels as arguments.\\
+\subsection{Results}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{lll}
+                     & Training Set & Test Set \\
+    Linear Model     & 0.938086     & 0.932331 \\
+    Non-linear model & 0.970607     & 0.947368
+  \end{tabular}
+  \caption{1 - Zero One Loss}
+  \label{classerr}
+\end{table}
+
+As we can see from table \ref{classerr} we achieve a 1.5\% decrease in classification error, on the test set, when using a non-linear model. Furthermore the classification performs 3.2\% better on the training set compared to the non-linear model. 
+
+\subsection{Discussion}
+I have chosen the procedure described above as it allows for building a model that is adapted to the data set that it is working on, rather than simply having a procedure to create a model that is specifically built for one data set. Furthermore allowed me to only make slight modifications to compared to the code required for section \ref{classification}. There are some significant computational costs to this procedure, that could be avoided by not attempting to obtain the best parameters or cross validating. The benefit of having a well fit model will however often outweight the computational costs, particularly when they are as low as they are for the given data set.

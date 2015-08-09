@@ -1,0 +1,44 @@
+\section{Question 3}
+In this question we are asked to perform binary classification using a linear and a non-linear method. We are to use grid search for the model selection. Furthermore we are to report specificity, sensitivity, and accuracy of the model.\\
+From reading \cite{senspec} we identify that sensitivity and recall different names for the same metric, and that specificity is given by \(\dfrac{TN}{FP+TN}\).
+
+\subsection{Description of software}\label{classification}
+For the parameter selection I have used the grid search and cross validation implementation, GridSearchCV, in \cite{scikit-learn}. It is employed by supplying the classifier as well as a dictionary containing the parameters to be evaluated and the values for each parameter in a list. Finally the number of folds is given. GridSearchCV returns a model, that yields the best results. The model is then fit on the data and can be used to predict predict the labels on the training and test set the model has been fit.\\
+I have used a support vector machine classifier for both linear and non-linear classifiers, using the 'linear' \((<x,x'>)\) and 'rbf' (\(-\gamma|x-x'|^2, \gamma > 0\)) kernels. Both are run through the grid search and cross validation, before the models are fit the data and the prediction is made.\\
+For the accuracy and recall score we use the implementation in \cite{scikit-learn}.They, as well as my own specificity method, work by receiving the prediction and the correct labels, and yield the score.
+
+\subsection{Results}
+\begin{minipage}[b]{0.45\textwidth}
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lll}
+    & Linear Model & Non-Linear Model \\\hline
+    Recall      & 0.996875     & 1.000000 \\
+    Specificity & 0.971787     & 1.000000 \\
+    Accuracy    & 0.984351     & 1.000000 
+  \end{tabular}
+  }
+  \captionof{table}{Scores on training set}
+  \label{binTrain}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\textwidth}
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lll}
+    & Linear Model & Non-Linear Model \\\hline
+    Recall      & 1.000000     & 1.000000 \\
+    Specificity & 0.949367     & 0.987342 \\
+    Accuracy    & 0.974843     & 0.993711        
+  \end{tabular}
+  }
+  \captionof{table}{Scores on test set}
+  \label{binTest}
+\end{minipage}
+
+As we see in table \ref{binTrain} both the linear and the non-linear models do extremely well on all metrics reported. Notably the non-linear model reports perfect scores on every metrics. This could have been an indication of overfitting the data, but as we see that both models predict exceptionally well on the test set, that conclusion can be temporarily rejected. Increasing the size of the test data set, and including outliers, would reveal more as far as overfitting goes.
+
+\subsection{Discussion}
+Sensitivity is the fraction of all correct positive predictions over the sum of correctly classified poisitive samples and the samples incorrectly classified as negative. Specificity is similar with regards to negative, that is specificity is the fraction of all correctly classified negative predictions over the sum of the correctly classified negative predictions and the incorrectly classified positive predictions.\\
+
+In the context of the application, sensitivity reports the fraction of correctly classified genuine users while the specificity reports the fraction of correctly classified fraudulent logins. This can be used to investigate how well the system is able to detect fraudulent and genuine users.
